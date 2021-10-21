@@ -46,13 +46,13 @@ const Navbar = () => {
             }
         }
         fetchData()
-    }, [])
+    }, [dispatch])
     return ( 
         <div className="navbar" id="navbar">
             <Link to="/"><h1>Stuck!</h1>  </Link>
             <form onSubmit={e => submit(e)}>
                 <input onChange={e => setSearch(e.target.value)}></input>
-                <button type="submit" className="search" ><img src="/images/magnifying-glass.png"></img></button>
+                <button type="submit" className="search" ><img src="/images/magnifying-glass.png" alt="search"></img></button>
             </form>
             {Auth()}
         </div>

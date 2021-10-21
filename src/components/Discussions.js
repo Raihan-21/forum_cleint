@@ -6,7 +6,6 @@ const Discussions = () => {
     const [menu, setMenu] = useState('all')
     const [filteredPosts, setFilteredPosts] = useState([])
     const [isLoading, setIsLoading] = useState(true)
-    const [search, setSearch] = useState('')
     const location = useLocation()
     const changeMenu = (category) => {
         setMenu(category)
@@ -17,7 +16,7 @@ const Discussions = () => {
         const fetchData = async () => {
             try{
                 setTimeout(async () => {
-                    const res = await fetch('/api/home')
+                    const res = await fetch('/api/discussions')
                     const data = await res.json()
                     const query = new URLSearchParams(location.search)
                     if(query.get("search")){
@@ -43,16 +42,16 @@ const Discussions = () => {
       return () => controller.abort()
     }, [location.search])
     useEffect(() => {
-        if(menu == 'all'){
+        if(menu === 'all'){
             setFilteredPosts(posts)
         }
         else{
             const filtered =  posts.filter(post => {
-                return post.category == menu
+                return post.category === menu
                 })
             setFilteredPosts(filtered)
         }
-    }, [menu])
+    }, [posts, menu])
 
 
     return ( 
@@ -61,7 +60,6 @@ const Discussions = () => {
             <div className="content posts">
                 <div className="header">
                     <h1>Discussions</h1>
-                    {search}
                     <Link to="/discussions/create"><span>Ask a question</span></Link>
                 </div>
                 
@@ -73,9 +71,9 @@ const Discussions = () => {
                                 <div className="bottom">
                                     <p>asked by {post.fullname}</p>
                                     <div className="like">
-                                        <img src="/images/like.png"></img>
+                                        <img src="/images/like.png" alt="profile-img"></img>
                                         <span className="like-count">{post.like}</span>
-                                        <img src="/images/comment.png"></img>
+                                        <img src="/images/comment.png" alt="like"></img>
                                         <span>{post.answers}</span>
                                     </div>
                                 </div>

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useHistory } from 'react-router-dom'
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 const Login = () => {
     const [login, setLogin] = useState('')
     const history = useHistory()
@@ -42,7 +42,7 @@ const Login = () => {
                     history.push("/discussions")
                 }
                 else{
-                    setLogin('email or password is wrong!')
+                    setLogin(data.error)
                     setValues({...values, password: ''})
                 }
             } catch (error) {

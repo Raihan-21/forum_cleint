@@ -38,6 +38,7 @@ const CreateDiscussion = () => {
                     body: JSON.stringify({user_email: currentUser.email, title: values.title, category: values.category, content: values.content})
                 })
                 const data = await res.json()
+                console.log(data.result)
                 history.push('/discussions')
             } catch (error) {
                 console.log(error)
@@ -76,7 +77,7 @@ const CreateDiscussion = () => {
                 <label>Categories</label>
                     <select className="input" onChange={e => setValues({...values, category: e.target.value})}>
                     {categories && categories.map(category => {
-                        return <option key={category._id} value={category._id}>{category.name}</option>
+                        return <option key={category._id} value={category.name}>{category.name}</option>
                     })}
                     </select>
                     <div>{errors.category}</div>

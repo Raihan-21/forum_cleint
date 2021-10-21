@@ -1,21 +1,7 @@
-import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import './index.css'
 const Home = () => {
-    // const [post, setPost] = useState('')
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try{
-    //         const res = await fetch('/home')
-    //         const data = await res.json()
-    //         setPost(data.result)
-    //         }
-    //         catch(err){
-    //           console.log(err)
-    //         }
-    //       }
-    //   fetchData()
-    // }, [])
+
     return ( 
         <div className="container home">
             <h1 className="animate mt-3" id="homeheader">Stuck!</h1>

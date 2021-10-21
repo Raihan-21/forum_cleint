@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Sidebar from "./Sidebar";
 import { useParams} from "react-router";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -29,6 +28,7 @@ const ShowDiscussions = () => {
                     body: JSON.stringify({user_email: currentUser, content: answer, post_id: id})
                 })
                 const data = await res.json()
+                console.log(data.result)
                 setError('')
             } catch (err) {
                 console.log(err)
@@ -53,7 +53,7 @@ const ShowDiscussions = () => {
           }
       fetchData()
       return () => controller.abort()
-    }, [])
+    }, [id])
     return ( 
         <div className="container">
             {isLoading && <div className="content">Loading...</div>}
@@ -66,11 +66,11 @@ const ShowDiscussions = () => {
                     <p>{post.content}</p>
                     <div className="bottom">
                         <div className="user">
-                            <img src="/images/profile-user.png"></img>
+                            <img src="/images/profile-user.png" alt="profile-img"></img>
                             <span>{post.user_fullname}</span>
                         </div>
                         <div className="like">
-                            <img src="/images/like.png"></img>
+                            <img src="/images/like.png" alt="like"></img>
                             <span>{post.like}</span>
                         </div>
                     </div>
@@ -82,11 +82,11 @@ const ShowDiscussions = () => {
                                 <p>{answer.content}</p> 
                                 <div className="bottom">
                                     <div className="user">
-                                        <img src="/images/profile-user.png"></img>
+                                        <img src="/images/profile-user.png" alt="profile-img"></img>
                                         <span>{answer.user_fullname}</span>
                                     </div>
                                     <div className="like">
-                                        <img src="/images/like.png"></img>
+                                        <img src="/images/like.png" alt="like"></img>
                                         <span>{post.like}</span>
                                     </div>
                                 </div>

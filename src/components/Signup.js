@@ -38,7 +38,7 @@ const Signup = () => {
                 const data = await res.json()
                 if(data.result){
                     setValues({email: '', fullname: '', password: ''})
-                    history.push('/discussions')
+                    history.push('/login')
                 }
                 else{
                     setErrors({...errors, email: 'This email has been taken'})
