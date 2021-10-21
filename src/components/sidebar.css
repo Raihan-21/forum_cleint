@@ -1,0 +1,25 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    width: 12%;
+    margin-left: 2rem;
+}
+.sidebar h1{
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+.filter{
+    cursor: pointer;
+    background-color: transparent;
+    padding: .5rem .8rem;
+    border-radius: 1rem;
+    border: none;
+    font-weight: bold;
+    font-size: .9rem;
+}
+.active{
+    background-color: rgb(214, 214, 255);
+}
+.active{
+    color: #008FC7;
+}
