@@ -17,6 +17,7 @@ const Discussions = () => {
             try{
                 setTimeout(async () => {
                     const res = await fetch('https://forum-fullstack.herokuapp.com/api/discussions')
+                    // const res = await fetch('/api/discussions')
                     const data = await res.json()
                     const query = new URLSearchParams(location.search)
                     if(query.get("search")){

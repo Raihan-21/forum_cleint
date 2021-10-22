@@ -9,7 +9,8 @@ const Navbar = () => {
     const [search, setSearch] = useState('')
     const dispatch = useDispatch()
     const logout = async () => {
-        const res = await fetch('/api/logout')
+        const res = await fetch('https://forum-fullstack.herokuapp.com/api/logout')
+        // const res = await fetch('/api/logout')
         const data = await res.json()
         if(data.result){
             dispatch({type: 'logout'})
@@ -40,6 +41,7 @@ const Navbar = () => {
     useEffect(() => {
         const fetchData = async () => {
             const res = await fetch('https://forum-fullstack.herokuapp.com/api/auth')
+            // const res = await fetch('/api/auth')
             const data = await res.json()
             if(data.result){
                 dispatch({type: 'login', payload: {email: data.result.email, username: data.result.fullname}})

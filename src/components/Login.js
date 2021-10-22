@@ -36,6 +36,11 @@ const Login = () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(values)
                 })
+                // const res = await fetch('/api/login', {
+                //     method: 'POST',
+                //     headers: {'Content-Type': 'application/json'},
+                //     body: JSON.stringify(values)
+                // })
                 const data = await res.json()
                 if(data.result){
                     dispatch({type: 'login', payload: {email: data.result.email, username: data.result.fullname}})

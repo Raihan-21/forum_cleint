@@ -17,23 +17,32 @@ const ShowDiscussions = () => {
         if(!isLoggedIn){
             history.push('/login')
         }
-        if(!answer){
-            setError('Please fill in your answer first!')
-        }
         else{
-            try {
-                const res = await fetch('https://forum-fullstack.herokuapp.com/api/answer', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({user_email: currentUser, content: answer, post_id: id})
-                })
-                const data = await res.json()
-                console.log(data.result)
-                setError('')
-            } catch (err) {
-                console.log(err)
+            if(!answer){
+                setError('Please fill in your answer first!')
+            }
+            else{
+                try {
+                    const res = await fetch('https://forum-fullstack.herokuapp.com/api/answer', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({user_email: currentUser, content: answer, post_id: id})
+                    })
+                    // const res = await fetch('/api/answer', {
+                    //     method: 'POST',
+                    //     headers: {'Content-Type': 'application/json'},
+                    //     body: JSON.stringify({user_email: currentUser.email, content: answer, post_id: id})
+                    // })
+                    const data = await res.json()
+                    setAnswers(prevState => [...prevState, data.result])
+                    setError('')
+                    setAnswer('')
+                } catch (err) {
+                    console.log(err)
+                }
             }
         }
+
     }
     useEffect(() => {
         const controller = new AbortController()
@@ -41,6 +50,7 @@ const ShowDiscussions = () => {
             try{
                 // setTimeout(async () => {
                     const res = await fetch(`https://forum-fullstack.herokuapp.com/api/discussions/${id}`)
+                    // const res = await fetch(`/api/discussions/${id}`)
                     const data = await res.json()
                     setPost(data.post)
                     setAnswers(data.answers)
@@ -97,7 +107,7 @@ const ShowDiscussions = () => {
                 <h3>Submit your answer</h3>
                 <form onSubmit={(e) => submit(e)}>
                     <div className={`input ${error ? 'error' : ''}`}>
-                        <textarea onChange={(e) => setAnswer(e.target.value)}></textarea>
+                        <textarea onChange={(e) => setAnswer(e.target.value)} value={answer}></textarea>
                         <div>{error}</div>
                     </div>
                     

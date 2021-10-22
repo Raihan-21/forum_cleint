@@ -16,6 +16,7 @@
     border: none;
     font-weight: bold;
     font-size: .9rem;
+    color: black;
 }
 .active{
     background-color: rgb(214, 214, 255);

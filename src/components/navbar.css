@@ -22,6 +22,7 @@
     background-color: transparent;
     cursor: pointer;
     padding: 0;
+    color: black;
 }
 .navbar .search{
     background-color: white;

@@ -37,6 +37,11 @@ const CreateDiscussion = () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_email: currentUser.email, title: values.title, category: values.category, content: values.content})
                 })
+                // const res = await fetch('/api/create', {
+                //     method: 'POST',
+                //     headers: {'Content-Type': 'application/json'},
+                //     body: JSON.stringify({user_email: currentUser.email, title: values.title, category: values.category, content: values.content})
+                // })
                 const data = await res.json()
                 console.log(data.result)
                 history.push('/discussions')
@@ -52,6 +57,9 @@ const CreateDiscussion = () => {
                 const res = await fetch('https://forum-fullstack.herokuapp.com/api/categories')
                 const data = await res.json()
                 setCategories(data.result)
+                // const res = await fetch('/api/categories')
+                // const data = await res.json()
+                // setCategories(data.result)
             }
             catch(err){
               console.log(err)

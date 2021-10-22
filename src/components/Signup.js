@@ -35,6 +35,11 @@ const Signup = () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(values)
                 })
+                // const res = await fetch('/api/signup', {
+                //     method: 'POST',
+                //     headers: {'Content-Type': 'application/json'},
+                //     body: JSON.stringify(values)
+                // })
                 const data = await res.json()
                 if(data.result){
                     setValues({email: '', fullname: '', password: ''})
