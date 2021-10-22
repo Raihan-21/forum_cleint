@@ -22,7 +22,7 @@ const ShowDiscussions = () => {
         }
         else{
             try {
-                const res = await fetch('/api/answer', {
+                const res = await fetch('https://forum-fullstack.herokuapp.com/api/answer', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_email: currentUser, content: answer, post_id: id})
@@ -40,7 +40,7 @@ const ShowDiscussions = () => {
         const fetchData = async () => {
             try{
                 // setTimeout(async () => {
-                    const res = await fetch(`/api/discussions/${id}`)
+                    const res = await fetch(`https://forum-fullstack.herokuapp.com/api/discussions/${id}`)
                     const data = await res.json()
                     setPost(data.post)
                     setAnswers(data.answers)

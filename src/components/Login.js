@@ -31,7 +31,7 @@ const Login = () => {
         e.preventDefault()
         if(checkValue()){
             try {
-                const res = await fetch('/api/login', {
+                const res = await fetch('https://forum-fullstack.herokuapp.com/api/login', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(values)

@@ -32,7 +32,7 @@ const CreateDiscussion = () => {
         e.preventDefault()
         if(checkValue()){
             try {
-                const res = await fetch('/api/create', {
+                const res = await fetch('https://forum-fullstack.herokuapp.com/api/create', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({user_email: currentUser.email, title: values.title, category: values.category, content: values.content})
@@ -49,7 +49,7 @@ const CreateDiscussion = () => {
         const controller = new AbortController()
         const fetchData = async () => {
             try{
-                const res = await fetch('/api/categories')
+                const res = await fetch('https://forum-fullstack.herokuapp.com/api/categories')
                 const data = await res.json()
                 setCategories(data.result)
             }
