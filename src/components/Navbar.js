@@ -51,15 +51,18 @@ const Navbar = () => {
     history.push(`/discussions?search=${search}`);
   };
   useEffect(() => {
-    // const fetchData = async () => {
-    //     const res = await fetch('https://forum-fullstack.herokuapp.com/api/auth')
-    //     // const res = await fetch('/api/auth')
-    //     const data = await res.json()
-    //     if(data.result){
-    //         dispatch({type: 'login', payload: {email: data.result.email, username: data.result.fullname}})
-    //     }
-    // }
-    // fetchData()
+    const fetchData = async () => {
+      const res = await fetch("https://forum-fullstack.herokuapp.com/api/auth");
+      // const res = await fetch('/api/auth')
+      const data = await res.json();
+      if (data.result) {
+        dispatch({
+          type: "login",
+          payload: { email: data.result.email, username: data.result.fullname },
+        });
+      }
+    };
+    fetchData();
   }, [dispatch]);
   return (
     <div className="navbar" id="navbar">
