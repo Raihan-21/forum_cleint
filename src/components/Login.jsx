@@ -113,7 +113,7 @@ const Login = () => {
             });
             history.push("/discussions");
           } else {
-            console.log(data.error);
+            // console.log(data.error);
             setErrorMsg({
               ...errorMsg,
               email: data.error.email,
