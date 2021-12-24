@@ -18,71 +18,71 @@ const schema = yup.object().shape({
 });
 
 const Login = () => {
-  const [login, setLogin] = useState("");
+  // const [login, setLogin] = useState("");
   const history = useHistory();
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  });
+  // const [values, setValues] = useState({
+  //   email: "",
+  //   password: "",
+  // });
   const [errorMsg, setErrorMsg] = useState({
     email: "",
     password: "",
   });
-  const changeValue = (name, value) => {
-    setValues({ ...values, [name]: value });
-  };
+  // const changeValue = (name, value) => {
+  //   setValues({ ...values, [name]: value });
+  // };
   const dispatch = useDispatch();
-  const checkValue = () => {
-    return Object.keys(values)
-      .map((key) => {
-        if (!values[key]) {
-          setErrorMsg((prevState) => ({
-            ...prevState,
-            [key]: `${key} field must not be empty`,
-          }));
-        } else {
-          setErrorMsg((prevState) => ({ ...prevState, [key]: `` }));
-        }
-        return key;
-      })
-      .every((prop) => values[prop]);
-  };
-  const submit = async (e, values) => {
-    e.preventDefault();
-    if (checkValue()) {
-      try {
-        const res = await fetch(
-          "https://forum-fullstack.herokuapp.com/api/login",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(values),
-          }
-        );
-        // const res = await fetch('/api/login', {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(values)
-        // })
-        const data = await res.json();
-        if (data.result) {
-          dispatch({
-            type: "login",
-            payload: {
-              email: data.result.email,
-              username: data.result.fullname,
-            },
-          });
-          history.push("/discussions");
-        } else {
-          setLogin(data.error);
-          setValues({ ...values, password: "" });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  // const checkValue = () => {
+  //   return Object.keys(values)
+  //     .map((key) => {
+  //       if (!values[key]) {
+  //         setErrorMsg((prevState) => ({
+  //           ...prevState,
+  //           [key]: `${key} field must not be empty`,
+  //         }));
+  //       } else {
+  //         setErrorMsg((prevState) => ({ ...prevState, [key]: `` }));
+  //       }
+  //       return key;
+  //     })
+  //     .every((prop) => values[prop]);
+  // };
+  // const submit = async (e, values) => {
+  //   e.preventDefault();
+  //   if (checkValue()) {
+  //     try {
+  //       const res = await fetch(
+  //         "https://forum-fullstack.herokuapp.com/api/login",
+  //         {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(values),
+  //         }
+  //       );
+  //       // const res = await fetch('/api/login', {
+  //       //     method: 'POST',
+  //       //     headers: {'Content-Type': 'application/json'},
+  //       //     body: JSON.stringify(values)
+  //       // })
+  //       const data = await res.json();
+  //       if (data.result) {
+  //         dispatch({
+  //           type: "login",
+  //           payload: {
+  //             email: data.result.email,
+  //             username: data.result.fullname,
+  //           },
+  //         });
+  //         history.push("/discussions");
+  //       } else {
+  //         setLogin(data.error);
+  //         setValues({ ...values, password: "" });
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
   return (
     <div className="container auth login">
       <Formik

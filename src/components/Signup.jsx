@@ -18,64 +18,64 @@ const schema = yup.object().shape({
 });
 
 const Signup = () => {
-  const [values, setValues] = useState({
-    email: "",
-    fullname: "",
-    password: "",
-  });
+  // const [values, setValues] = useState({
+  //   email: "",
+  //   fullname: "",
+  //   password: "",
+  // });
   const [errorMsg, setErrorMsg] = useState({
     email: "",
   });
-  const changeValue = (name, value) => {
-    setValues({ ...values, [name]: value });
-  };
+  // const changeValue = (name, value) => {
+  //   setValues({ ...values, [name]: value });
+  // };
   const history = useHistory();
-  const checkValue = () => {
-    return Object.keys(values)
-      .map((key) => {
-        if (!values[key]) {
-          setErrorMsg((prevState) => ({
-            ...prevState,
-            [key]: `${key} field must not be empty`,
-          }));
-        } else {
-          setErrorMsg((prevState) => ({ ...prevState, [key]: `` }));
-        }
-        return key;
-      })
-      .every((key) => values[key]);
-  };
-  const submit = async (e) => {
-    e.preventDefault();
-    if (checkValue()) {
-      try {
-        const res = await fetch(
-          "https://forum-fullstack.herokuapp.com/api/signup",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(values),
-          }
-        );
-        // const res = await fetch('/api/signup', {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(values)
-        // })
-        const data = await res.json();
-        if (data.result) {
-          setValues({ email: "", fullname: "", password: "" });
-          history.push("/login");
-        } else {
-          setErrorMsg({ ...errorMsg, email: "This email has been taken" });
-          setValues({ ...values, password: "" });
-          console.log(data.error);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  // const checkValue = () => {
+  //   return Object.keys(values)
+  //     .map((key) => {
+  //       if (!values[key]) {
+  //         setErrorMsg((prevState) => ({
+  //           ...prevState,
+  //           [key]: `${key} field must not be empty`,
+  //         }));
+  //       } else {
+  //         setErrorMsg((prevState) => ({ ...prevState, [key]: `` }));
+  //       }
+  //       return key;
+  //     })
+  //     .every((key) => values[key]);
+  // };
+  // const submit = async (e) => {
+  //   e.preventDefault();
+  //   if (checkValue()) {
+  //     try {
+  //       const res = await fetch(
+  //         "https://forum-fullstack.herokuapp.com/api/signup",
+  //         {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(values),
+  //         }
+  //       );
+  //       // const res = await fetch('/api/signup', {
+  //       //     method: 'POST',
+  //       //     headers: {'Content-Type': 'application/json'},
+  //       //     body: JSON.stringify(values)
+  //       // })
+  //       const data = await res.json();
+  //       if (data.result) {
+  //         setValues({ email: "", fullname: "", password: "" });
+  //         history.push("/login");
+  //       } else {
+  //         setErrorMsg({ ...errorMsg, email: "This email has been taken" });
+  //         setValues({ ...values, password: "" });
+  //         console.log(data.error);
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
   return (
     <div className="container auth signup">
       <Formik
